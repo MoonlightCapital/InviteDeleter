@@ -16,8 +16,8 @@ exports.run = async (client, message, args) => {
 
   const color = args[0]
 
-  /*if(data.powerlevel >= message.author.data.powerlevel)
-    return message.channel.send('<:redtick:466238619997175811> Invalid permissions')*/
+  if(data.powerlevel >= message.author.data.powerlevel)
+    return message.channel.send('<:redtick:466238619997175811> Invalid permissions')
 
   const colorMatch = color.match(pattern)
 

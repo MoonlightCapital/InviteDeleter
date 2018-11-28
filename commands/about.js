@@ -6,6 +6,8 @@ You can invite me to your server with this link: Invite this bot to your server:
 
 If you want to ask questions about how I work, please head to my support server: <https://discord.gg/hNQWVVC>
   `
+
+  message.channel.send(msg)
 }
 
 exports.help = {
