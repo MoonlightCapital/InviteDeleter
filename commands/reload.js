@@ -1,6 +1,8 @@
+const {greentick, redtick, yellowtick} = require('../includes/emotes')
+
 exports.run = async (client, message, args) => {
 
-  if(!args || args.size < 1) return message.channel.send('Please specify a command name')
+  if(!args || args.size < 1) return message.channel.send(`${yellowtick} Please specify a command name`)
   const commandName = args[0]
 
   try {
@@ -9,9 +11,9 @@ exports.run = async (client, message, args) => {
 
     client.commands.set(commandName, props)
 
-    message.channel.send(`Command \`${commandName}\` has been reloaded`)
+    message.channel.send(`${greentick} Command \`${commandName}\` has been reloaded`)
   } catch (error) {
-    message.channel.send(`An error occured while reloading the command:
+    message.channel.send(`${redtick} An error occured while reloading the command:
         \`\`\`${error.name}: ${error.message}\`\`\``)
   }
 
