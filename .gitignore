@@ -1,0 +1,4 @@
+config.js
+*.sqlite
+*.db
+node_modules

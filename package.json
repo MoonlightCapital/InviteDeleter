@@ -1,0 +1,24 @@
+{
+  "name": "invite-deleter-rewrite",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bot.js",
+  "scripts": {
+    "test": "eslint .",
+    "start": "node .",
+    "fix": "eslint . --fix"
+  },
+  "keywords": [],
+  "author": "MoonlightCapital",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^5.9.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0"
+  },
+  "dependencies": {
+    "discord.js": "^11.4.2",
+    "sequelize": "^4.41.2",
+    "sqlite3": "^4.0.4"
+  }
+}
