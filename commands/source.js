@@ -1,5 +1,5 @@
 exports.run = async (client, message) => {
-  message.channel.send('My source code can be found at http://sasg.html-5.me/board')
+  message.channel.send('My source code can be found at https://github.com/MoonlightCapital/InviteDeleter')
 }
 
 exports.help = {
