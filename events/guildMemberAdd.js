@@ -1,5 +1,5 @@
 //const pattern = /((?:https?:\/\/)?(?:www\.)?(?:discord|twitter|paypal|twitch|selly)(?:\.me|\.tv|app\.com|\.gg|\.io|\/invite)(?:\/\w*)?)/gmi
-const pattern = /((?:https?:\/\/)?(?:www\.)?(?:discord|twitter|paypal|selly)(?:\.me|app\.com|\.gg|\.io|\/invite)(?:\/\w*)?)/gmi
+const pattern = /((?:https?:\/\/)?(?:www\.)?(?:discord|paypal|selly)(?:\.me|app\.com|\.gg|\.io|\/invite)(?:\/\w*)?)/gmi
 
 module.exports = async (client, member) => {
 
