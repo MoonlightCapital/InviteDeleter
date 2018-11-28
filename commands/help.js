@@ -1,4 +1,5 @@
 const {RichEmbed} = require('discord.js')
+const {redtick} = require('../includes/emotes')
 
 exports.run = async (client, message, args) => {
 
@@ -14,7 +15,7 @@ exports.run = async (client, message, args) => {
 
   const command = client.commands.get(args[0]) || client.commands.find(c => c.config.aliases.includes(args[0]))
 
-  if(!command || command.unlisted) return message.channel.send('Unknown command')
+  if(!command || command.unlisted) return message.channel.send(`${redtick} Unknown command`)
 
   const embed = new RichEmbed()
     .addField('Description', command.help.info)
