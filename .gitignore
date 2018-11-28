@@ -1,5 +1,4 @@
 config.js
-watch.json
 *.sqlite
 *.db
 node_modules
