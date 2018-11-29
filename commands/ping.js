@@ -1,7 +1,9 @@
+const {greentick, yellowtick} = require('../includes/emotes')
+
 exports.run = async (client, message) => {
 
-  const msg = await message.channel.send(':ping_pong: Pong!');
-  msg.edit(`:ping_pong: Pong! Latency: \`${msg.createdTimestamp - message.createdTimestamp}ms\`. API Latency: \`${Math.round(client.ping)}ms\``);
+  const msg = await message.channel.send(`${yellowtick} Pong!`);
+  msg.edit(`${greentick} Pong! Latency: \`${msg.createdTimestamp - message.createdTimestamp}ms\`. API Latency: \`${Math.round(client.ping)}ms\``);
 
 
 }

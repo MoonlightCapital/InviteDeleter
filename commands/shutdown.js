@@ -1,6 +1,8 @@
+const {greentick} = require('../includes/emotes')
+
 exports.run = async (client, message) => {
 
-  await message.channel.send('Shutting down...')
+  await message.channel.send(`${greentick} Shutting down...`)
 
   process.exit()
 }

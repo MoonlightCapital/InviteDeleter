@@ -1,3 +1,5 @@
+const {redtick} = require('../includes/emotes')
+
 module.exports = async (client, message) => {
 
   if(client.config.allowMentionPrefix) message.content = message.content.replace(new RegExp(`^<@!?${client.user.id}> `), client.config.prefix)
@@ -22,6 +24,6 @@ module.exports = async (client, message) => {
     await cmd.run(client, message, args)
   } catch (error) {
     console.error(error)
-    message.channel.send(':x: Something went wrong while executing the command').catch(console.error)
+    message.channel.send(`${redtick} Something went wrong while executing the command`).catch(console.error)
   }
 }
