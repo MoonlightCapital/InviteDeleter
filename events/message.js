@@ -1,4 +1,6 @@
 const {redtick} = require('../includes/emotes')
+const {logHook, commandHook, errorHook, formatCommand} = require('../includes/logging')
+const {RichEmbed} = require('discord.js')
 
 module.exports = async (client, message) => {
 
@@ -24,6 +26,9 @@ module.exports = async (client, message) => {
     await cmd.run(client, message, args)
   } catch (error) {
     console.error(error)
+    errorHook.send(new RichEmbed().setDescription(error.toString()).setFooter(Date.now()))
     message.channel.send(`${redtick} Something went wrong while executing the command`).catch(console.error)
+  } finally {
+    commandHook.send(formatCommand(message, command), new RichEmbed().setDescription(client.utils.escapeMarkdown(message.cleanContent)).setFooter(Date.now()))
   }
 }

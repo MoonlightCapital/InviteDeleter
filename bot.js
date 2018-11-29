@@ -1,17 +1,18 @@
-const http = require('http');
-const express = require('express');
-const app = express();
+const http = require('http')
+const express = require('express')
+const app = express()
 app.get("/", (request, response) => {
-  response.sendStatus(200);
-});
+  response.sendStatus(200)
+})
 app.listen(process.env.PORT);
 setInterval(() => {
-  http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
-}, 280000);
+  http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`)
+}, 280000)
 
 const Discord = require('discord.js')
 const fs = require('fs')
 const config = require('./config.js')
+const {errorHook} = require('./includes/logging')
 
 const client = new Discord.Client()
 
@@ -47,3 +48,14 @@ commandFiles.forEach(file => {
 })
 
 client.login(config.token)
+
+process.on('unhandledRejection', (error, p) => {
+  console.error(error)
+  errorHook.send(new Discord.richEmbed().setColor(0xFFFF00).setTitle(`Unhandled promise rejection as ${p}`).setDescription(error.toString()))
+})
+
+process.on('uncaughtException', error => {
+  console.error(error.stack)
+  errorHook.send(new Discord.richEmbed().setColor(0xFF0000).setTitle(`Uncaught exception`).setDescription(error.stack))
+  process.exit(1)
+})
