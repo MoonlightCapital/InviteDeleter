@@ -1,10 +1,13 @@
 const {greentick} = require('../includes/emotes')
+const {logHook} = require('../includes/logging')
 
 exports.run = async (client, message) => {
 
   await message.channel.send(`${greentick} Shutting down...`)
 
-  process.exit()
+  await logHook.send(`:mobile_phone_off: ${client.utils.escapeMarkdown(message.author.tag)} (\`${message.author.id}\`) shut the bot down`)
+
+  process.exit(0)
 }
 
 exports.help = {

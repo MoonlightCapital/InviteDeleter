@@ -1,4 +1,5 @@
 const {greentick, redtick, yellowtick} = require('../includes/emotes')
+const {logHook} = require('../includes/logging')
 
 exports.run = async (client, message, args) => {
 
@@ -29,6 +30,7 @@ exports.run = async (client, message, args) => {
     await client.db.updateUser({powerlevel: -2, blacklistReason: reason}, user.id)
 
     message.channel.send(`${greentick} Banned \`${user.id}\` from ${potentialGuilds.size} servers`)
+    logHook.send(`:hammer_and_pick: ${client.utils.escapeMarkdown(message.author.tag)} (\`${message.author.id}\`) globally banned ${user.tag} (\`${user.id}\`) with reason: *${client.utils.escapeMarkdown(reason)}*`)
   }).catch(e => {
     message.channel.send(`${redtick} An invalid user was provided, or something went wrong`)
     console.error(e)
