@@ -1,4 +1,5 @@
 const {greentick, redtick, yellowtick} = require('../includes/emotes')
+const {logHook} = require('../includes/logging')
 
 exports.run = async (client, message, args) => {
 
@@ -30,6 +31,8 @@ exports.run = async (client, message, args) => {
   await client.db.updateUser({powerlevel: level}, data.id)
 
   message.channel.send(`${greentick} \`${data.id}\`'s powerlevel was set to ${levelTag}`)
+
+  logHook.send(`:helmet_with_cross: ${client.utils.escapeMarkdown(message.author.tag)} (\`${message.author.id}\`) set \`${data.id}\`'s powerlevel to **${level}**`)
 }
 
 exports.help = {
