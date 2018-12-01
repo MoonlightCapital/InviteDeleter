@@ -11,6 +11,7 @@ module.exports = async (client, member) => {
     client.guilds.filter(g=>g.me.hasPermission('BAN_MEMBERS')).forEach(guild => {
       guild.ban(member.id, 'Invite link as username').catch(console.error)
     })
+    await client.db.forceUser(member.id)
     await client.db.updateUser({powerlevel: -2, blacklistReason: 'Automatic ban: suspicious link in username'}, member.id)
     logHook.send(`:bomb: \`${member.id}\` has been automatically gbanned for having a match in its username`)
 
