@@ -8,6 +8,7 @@ exports.run = async (client, message, args) => {
 
     const embed = new RichEmbed()
       .setTitle('Listing all commands')
+      .setColor(0x99cc33)
       .setDescription(commandList)
       .setFooter(`Use ${client.config.prefix}help [command] to see detailed information about a specific command`)
     return message.channel.send(embed)
@@ -18,6 +19,7 @@ exports.run = async (client, message, args) => {
   if(!command || command.unlisted) return message.channel.send(`${redtick} Unknown command`)
 
   const embed = new RichEmbed()
+    .setColor(0x33cc99)
     .addField('Description', command.help.info)
     .addField('Usage', `${client.config.prefix}${args[0]} ${command.help.usage}`)
     .addField('Aliases', command.config.aliases.map(a => `\`${a}\``).join(', ') || 'None')

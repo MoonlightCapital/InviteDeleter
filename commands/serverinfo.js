@@ -17,6 +17,7 @@ exports.run = async (client, message, args) => {
 
   .setTitle(`Information for server ${guild.name}`)
   .setThumbnail(guild.iconURL)
+  .setColor(0xcc3399)
 
   .addField('Member count', guild.members.size)
   .addField('Owner', `${client.utils.escapeMarkdown(guildOwner.tag)} (\`${guild.ownerID}\`)`)
