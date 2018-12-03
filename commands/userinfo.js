@@ -39,4 +39,5 @@ exports.config = {
   ownerOnly: false,
   aliases: ['uinfo'],
   minLevel: -1,
+  cooldown: 5,
 }

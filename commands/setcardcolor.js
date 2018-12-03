@@ -44,4 +44,5 @@ exports.config = {
   ownerOnly: false,
   aliases: ['scc'],
   minLevel: 3,
+  cooldown: 3,
 }

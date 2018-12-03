@@ -40,5 +40,6 @@ exports.config = {
   guildOnly: false,
   ownerOnly: true,
   aliases: [],
-  minLevel: 10
+  minLevel: 10,
+  cooldown: 0,
 }

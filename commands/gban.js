@@ -50,4 +50,5 @@ exports.config = {
   ownerOnly: false,
   aliases: [],
   minLevel: 4,
+  cooldown: 5,
 }

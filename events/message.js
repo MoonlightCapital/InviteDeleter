@@ -2,6 +2,8 @@ const {redtick} = require('../includes/emotes')
 const {logHook, commandHook, errorHook, formatCommand} = require('../includes/logging')
 const {RichEmbed} = require('discord.js')
 
+const cooldownCache = new Set()
+
 module.exports = async (client, message) => {
 
   if(client.config.allowMentionPrefix) message.content = message.content.replace(new RegExp(`^<@!?${client.user.id}> `), client.config.prefix)
@@ -15,6 +17,11 @@ module.exports = async (client, message) => {
   const cmd = client.commands.get(command) || client.commands.find(c => c.config.aliases.includes(command))
   if (!cmd) return
 
+  const limitFlag = `${message.author.id}-${cmd.help.name}`
+
+  if(cooldownCache.has(limitFlag))
+    return message.channel.send(':timer: You are on cooldown. Please try again later')
+
   message.author.data = await client.db.forceUser(message.author.id)
 
   if(cmd.config.guildOnly && !message.guild) return
@@ -23,11 +30,15 @@ module.exports = async (client, message) => {
 
 
   try {
+    cooldownCache.add(limitFlag)
+    setTimeout(()=>{cooldownCache.delete(limitFlag)}, cmd.config.cooldown*1000)
+
     await cmd.run(client, message, args)
+
   } catch (error) {
     console.error(error)
     errorHook.send(new RichEmbed().setDescription(error.toString()).setFooter(Date.now()))
-    message.channel.send(`${redtick} Something went wrong while executing the command`).catch(console.error)
+    message.channel.send(`${redtick} Something went wrong while executing the command. Developers have been notified`).catch(console.error)
   } finally {
     commandHook.send(formatCommand(message, command), new RichEmbed().setDescription(client.utils.escapeMarkdown(message.cleanContent)).setFooter(Date.now()))
   }

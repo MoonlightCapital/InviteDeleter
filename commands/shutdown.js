@@ -21,5 +21,6 @@ exports.config = {
   guildOnly: false,
   ownerOnly: true,
   aliases: ['restart', 'reboot'],
-  minLevel: 10
+  minLevel: 10,
+  cooldown: 0,
 }
