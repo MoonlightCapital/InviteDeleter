@@ -36,17 +36,24 @@ Users.sync()
 
 async function getUser(user) {
   const data = cache.get(user) || await Users.findOne({where: {id: user}})
-  if(data) cacheUser(data)
+  if(data) await cacheUser(data)
   return data
 }
 
 async function cacheUser(user) {
-  cache.set(user.id, user)
+  const stuff = {
+    id: user.id,
+    powerlevel: user.powerlevel,
+    blacklistreason: user.blacklistreason,
+    cardColor: user.cardColor,
+    points: user.points
+  }
+  cache.set(user.id, stuff)
 }
 
 async function addUser(id) {
   const user = await Users.create({id: id})
-  cacheUser(user)
+  await cacheUser(user)
   return user
 }
 
@@ -56,10 +63,18 @@ async function forceUser(id) {
   return await addUser(id)
 }
 
+async function getUserFresh(user) {
+  return await Users.findOne({where: {id: user}})
+}
+
 async function updateUser(data, user) {
-  const update = await Users.update(data, {where: {id: user}})
-  cacheUser(update)
+  await Users.update(data, {where: {id: user}})
+
+  const update = await getUserFresh(user)
+
+  await cacheUser(update)
+
   return update
 }
 
-module.exports = {getUser, cacheUser, addUser, forceUser, updateUser}
+module.exports = {getUser, cacheUser, addUser, forceUser, getUserFresh, updateUser}
