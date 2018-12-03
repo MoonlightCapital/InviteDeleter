@@ -9,6 +9,8 @@ const sequelize = new S('database', 'user', 'password', {
     storage: 'database.sqlite',
 })
 
+const cache = new Map()
+
 const Users = sequelize.define('users', {
   id: {
     type: S.STRING,
@@ -33,11 +35,19 @@ const Users = sequelize.define('users', {
 Users.sync()
 
 async function getUser(user) {
-  return await Users.findOne({where: {id: user}})
+  const data = cache.get(user) || await Users.findOne({where: {id: user}})
+  if(data) cacheUser(data)
+  return data
+}
+
+async function cacheUser(user) {
+  cache.set(user.id, user)
 }
 
 async function addUser(id) {
-  return await Users.create({id: id})
+  const user = await Users.create({id: id})
+  cacheUser(user)
+  return user
 }
 
 async function forceUser(id) {
@@ -47,7 +57,9 @@ async function forceUser(id) {
 }
 
 async function updateUser(data, user) {
-  return await Users.update(data, {where: {id: user}})
+  const update = await Users.update(data, {where: {id: user}})
+  cacheUser(update)
+  return update
 }
 
-module.exports = {getUser, addUser, forceUser, updateUser}
+module.exports = {getUser, cacheUser, addUser, forceUser, updateUser}
