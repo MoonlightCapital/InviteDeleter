@@ -22,6 +22,7 @@ exports.run = async (client, message, args) => {
     .setColor(0x33cc99)
     .addField('Description', command.help.info)
     .addField('Usage', `${client.config.prefix}${args[0]} ${command.help.usage}`)
+    .addField('Minimum power level required', client.pl.getLevelTag(command.config.minLevel))
     .addField('Aliases', command.config.aliases.map(a => `\`${a}\``).join(', ') || 'None')
 
   message.channel.send(embed)
