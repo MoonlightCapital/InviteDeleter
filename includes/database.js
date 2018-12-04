@@ -44,7 +44,7 @@ async function cacheUser(user) {
   const stuff = {
     id: user.id,
     powerlevel: user.powerlevel,
-    blacklistreason: user.blacklistreason,
+    blacklistReason: user.blacklistReason,
     cardColor: user.cardColor,
     points: user.points
   }

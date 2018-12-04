@@ -23,6 +23,8 @@ exports.run = async (client, message, args) => {
   .addField('Owner', `${client.utils.escapeMarkdown(guildOwner.tag)} (\`${guild.ownerID}\`)`)
   .addField('Bot has ban permission', guild.me.hasPermission('BAN_MEMBERS'))
 
+  .setFooter(`Created at ${guild.createdAt}`)
+
   message.channel.send(embed)
 }
 
