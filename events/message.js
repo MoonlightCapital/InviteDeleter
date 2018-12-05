@@ -26,7 +26,13 @@ module.exports = async (client, message) => {
 
   if(cmd.config.guildOnly && !message.guild) return
   if(cmd.config.ownerOnly && !client.config.owners.includes(message.author.id)) return
-  if(cmd.config.minLevel > message.author.data.powerlevel) return
+
+  if(cmd.config.minLevel > message.author.data.powerlevel) {
+    if(message.author.data.powerlevel >= 0)
+      message.channel.send(`:lock: You are not allowed to use this command: minimum permission required is ${client.pl.getLevelTag(cmd.config.minLevel)}`)
+
+    return
+  }
 
 
   try {
