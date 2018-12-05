@@ -14,6 +14,21 @@ const list = {
     name: 'Normal user',
     icon: ':small_blue_diamond:'
   },
+  1: {
+    level: 1,
+    name: 'Event attendee',
+    icon: ':tickets:'
+  },
+  2: {
+    level: 2,
+    name: 'Donor',
+    icon: ':moneybag:'
+  },
+  3: {
+    level: 3,
+    name: 'Event staff',
+    icon: ':tada:'
+  },
   4: {
     level: 4,
     name: 'Global moderator',
