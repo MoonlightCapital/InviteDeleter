@@ -21,6 +21,11 @@
     "express": "^4.16.4",
     "ms": "^2.1.1",
     "sequelize": "^4.41.2",
-    "sqlite3": "^4.0.4"
+    "sqlite3": "^4.0.4",
+    "uws": "^99.0.0"
+  },
+  "optionalDependencies": {
+    "bufferutil": "^4.0.0",
+    "erlpack": "github:hammerandchisel/erlpack"
   }
 }
