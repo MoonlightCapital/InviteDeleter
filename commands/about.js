@@ -1,4 +1,4 @@
-exports.run = (client, message) => {
+exports.run = async (client, message) => {
   const msg = `
 Hi, I'm ${client.user.username}. I'm a bot that provides security and anti-spam features to Discord servers.
 
