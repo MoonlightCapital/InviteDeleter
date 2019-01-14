@@ -8,7 +8,7 @@ function update(branch) {
   })
 }
 
-exports.run = async (client, message) => {
+exports.run = async (client, message, args) => {
 
   const msg = await message.channel.send(`${greentick} Update started...`)
 
