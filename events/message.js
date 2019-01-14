@@ -44,7 +44,7 @@ module.exports = async (client, message) => {
   } catch (error) {
     console.error(error)
     errorHook.send(new RichEmbed().setDescription(error.toString()).setFooter(Date.now()))
-    message.channel.send(`${redtick} Something went wrong while executing the command. Developers have been notified`).catch(console.error)
+    message.channel.send(`${redtick} Something went wrong while executing the command. Please notify the developers at <https://discord.gg/8376ZVg>`).catch(console.error)
   } finally {
     commandHook.send(formatCommand(message, command), new RichEmbed().setDescription(client.utils.escapeMarkdown(message.cleanContent)).setFooter(Date.now()))
   }

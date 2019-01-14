@@ -2,3 +2,4 @@ config.js
 *.sqlite
 *.db
 node_modules
+event-stuff/purgecommand.js

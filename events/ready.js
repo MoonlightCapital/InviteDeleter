@@ -5,5 +5,6 @@ module.exports = async (client) => {
   console.log(`Discord.JS version: ${client.dversion}`)
   console.log('===========================')
 
-  client.user.setPresence({ game: { name: `${client.config.prefix}help`, type: 'WATCHING' }})
+  //client.user.setPresence({ game: { name: `${client.config.prefix}help`, type: 'WATCHING' }})
+  client.user.setPresence({ game: { name: `Event soon | ${client.config.prefix}help`, type: 'WATCHING' }, status: 'dnd'})
 }

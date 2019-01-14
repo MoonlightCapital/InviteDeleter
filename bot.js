@@ -14,7 +14,7 @@ const fs = require('fs')
 const config = require('./config.js')
 const {errorHook} = require('./includes/logging')
 
-const client = new Discord.Client()
+const client = new Discord.Client({disabledEvents: ['GUILD_BAN_ADD', 'GUILD_BAN_REMOVE']})
 
 client.config = config
 client.dversion = Discord.version
