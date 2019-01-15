@@ -15,7 +15,7 @@ function generateList(messages) {
   for(let i=0; i<strings.length; i++) {
     arr.push(strings[i])
   }
-  return arr
+  return arr.join('\n')
 }
 
 exports.run = async (client, message, args) => {
@@ -67,8 +67,10 @@ Please react with the green tick if you want to send, and with the red one to ca
         if(err) console.error(err); return message.channel.send(':x: something went wrong while creating the file. Please try again later')
       })
 
-      client.channels.get(client.config.reportChannel).send({embed: embed, file: new Attachment(filename, 'report.txt')})
+      await client.channels.get(client.config.reportChannel).send({embed: embed, file: new Attachment(filename, 'report.txt')})
       // TODO: send action to bot log
+
+      fs.unlink(filename, ()=>{})
 
       msg.edit(`${greentick} Your report has been filed successfully. Thank you for the help`)
     } else if(collector.first().emoji.id === snowflakes.red) {
@@ -76,6 +78,7 @@ Please react with the green tick if you want to send, and with the red one to ca
     }
 
   } catch(e) {
+    console.error(e)
     msg.edit(`${yellowtick} Timeout: operation aborted`)
   }
 }
