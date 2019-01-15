@@ -60,6 +60,7 @@ Please react with the green tick if you want to send, and with the red one to ca
       .setAuthor(`${message.author.tag} (${message.author.id})`)
       .setTitle('Report')
       .setDescription(reason)
+      .addField('User', `${client.utils.escapeMarkdown(filtered.first().author.tag)} (\`${filtered.first().author.id}\`)`)
       .setTimestamp(new Date())
 
       let filename = `./temp/reports-${user}-${message.guild.id}-${Date.now()}.txt`
