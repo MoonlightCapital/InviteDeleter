@@ -3,3 +3,4 @@ config.js
 *.db
 node_modules
 event-stuff/purgecommand.js
+temp

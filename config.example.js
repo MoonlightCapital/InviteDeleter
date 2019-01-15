@@ -8,6 +8,7 @@ module.exports = {
     log: ['maor', 'ninja'],
     command: ['moonlight', 'capital'],
     error: ['night', 'yoshi']
-  }
+  },
+  reportChannel: '534609104950525962'
 
 }
