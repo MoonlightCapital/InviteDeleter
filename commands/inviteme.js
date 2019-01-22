@@ -8,20 +8,28 @@ exports.run = async (client, message, args) => {
   if(!guild || guild.deleted)
     return message.channel.send(`${redtick} You provided an invalid server ID, or I'm not in that server`)
 
-  const channel = guild.channels.find(c=>c.permissionsFor(guild.me).has('CREATE_INSTANT_INVITE'))
+  const channel = guild.channels.find(c=>c.permissionsFor(guild.me).has('CREATE_INSTANT_INVITE') && c.type !== 'category')
 
   if(!channel)
     return message.channel.send(`${redtick} Couldn't create an invite in any channel`)
 
-  const invite = await channel.createInvite({maxUses: 1})
-
   try {
+    const invite = await channel.createInvite({maxUses: 1})
+
     await message.author.send(`:link: Here's your invite link to ${client.utils.escapeMarkdown(guild.name)}: <https://discord.gg/${invite.code}>`)
-    await message.channel.send(`${greentick} Created an invite link and sent it in your DMs`)
+
+    if(!message.guild)
+      await message.channel.send(`${greentick} Created an invite link and sent it in your DMs`)
+
   } catch(e) {
-    if(e.name === 'DiscordAPIError')
+    if(e.code === 50007)
       message.channel.send(`${redtick} Could not DM you the invite link`)
-    else console.error(e)
+    else if(e.code === 50013)
+      message.channel.send(`${redtick} Could not create the invite due to a permissions error`)
+    else {
+       console.error(e)
+       message.channel.send(`${redtick} Something went wrong`)
+     }
   }
 
   logHook.send(`:link: ${client.utils.escapeMarkdown(message.author.tag)} (\`${message.author.id}\`) created an invite for server ${client.utils.escapeMarkdown(guild.name)} (\`${guild.id}\`)`)
