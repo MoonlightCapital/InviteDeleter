@@ -11,7 +11,9 @@ exports.run = async (client, message, args) => {
   if(!guild)
     return message.channel.send(`${redtick} Could not find a server with that ID`)
 
-  if(guild.id !== message.guild.id && message.author.data.powerlevel < 3)
+  const cServerId = message.guild ? message.guild.id : ''
+
+  if(guild.id !== cServerId && message.author.data.powerlevel < 3)
     return message.channel.send(`${redtick} You are not allowed to see this server's information`)
 
   const guildOwner = await client.fetchUser(guild.ownerID)
@@ -42,6 +44,6 @@ exports.config = {
   guildOnly: false,
   ownerOnly: false,
   aliases: ['server'],
-  minLevel: 3,
+  minLevel: 0,
   cooldown: 3,
 }
