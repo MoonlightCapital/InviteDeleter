@@ -1,4 +1,6 @@
 const {RichEmbed} = require('discord.js')
+const {yellowtick, redtick} = require('../includes/emotes')
+
 
 exports.run = async (client, message, args) => {
 
@@ -6,9 +8,12 @@ exports.run = async (client, message, args) => {
   const data = await client.db.getUser(userMention)
 
   if(!data)
-    return message.channel.send(':warning: No data found for that user')
+    return message.channel.send(`${yellowtick} No data found for that user`)
 
   data.user = await client.fetchUser(userMention)
+
+  if(message.author.data.powerlevel < 0 && data.user.id !== message.author.id)
+    return message.channel.send(`${redtick} Couldn't show you information for that user`)
 
 
   const embed = new RichEmbed()
@@ -19,7 +24,7 @@ exports.run = async (client, message, args) => {
   .addField('Power level', client.pl.getLevelTag(data.powerlevel), true)
   .addField('Points earned', data.points, true)
 
-  if(data.blacklistReason)
+  if(data.blacklistReason && data.powerlevel < 0)
     embed.addField('Reason for blacklist/global ban', `\`\`\`${client.utils.escapeMarkdown(data.blacklistReason)}\`\`\``)
 
 
