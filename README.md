@@ -2,6 +2,9 @@
 [![GitHub license](https://img.shields.io/github/license/MoonlightCapital/InviteDeleter.svg)](https://github.com/MoonlightCapital/InviteDeleter/blob/master/LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/MoonlightCapital/InviteDeleter.svg)](https://github.com/MoonlightCapital/InviteDeleter/stargazers)
 
+
+[![Discord Bots](https://discordbots.org/api/widget/493299837358440468.svg)](https://discordbots.org/bot/493299837358440468)
+
 # Invite Deleter
 This is a bot that takes care of spambots attacking Discord servers that use invite links in their nicknames, banning them from all possible servers.
 
