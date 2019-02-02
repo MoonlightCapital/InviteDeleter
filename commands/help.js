@@ -2,7 +2,6 @@ const {RichEmbed} = require('discord.js')
 const {redtick} = require('../includes/emotes')
 
 exports.run = async (client, message, args) => {
-console.log(messagr.author.data.powerlevel)
   if(!args[0]) {
     const commandList = client.commands.filter(c => c.help.unlisted === false && c.config.minLevel <= message.author.data.powerlevel).map(c => `\`${c.help.name}\``).join(', ')
 
