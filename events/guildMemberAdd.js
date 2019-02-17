@@ -5,7 +5,7 @@ const {logHook} = require('../includes/logging')
 module.exports = async (client, member) => {
 
   if(pattern.test(member.user.username)) {
-    if(member.bot) return
+    if(member.user.bot) return
 
     if(member.bannable) member.guild.ban(member.id, {reason: 'Automatic ban: suspicious link in username', days: 7}).catch(console.error)
     client.guilds.filter(g=>g.me.hasPermission('BAN_MEMBERS')).forEach(guild => {
