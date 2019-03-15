@@ -18,7 +18,7 @@ exports.run = async (client, message, args) => {
 
     await message.author.send(`:link: Here's your invite link to ${client.utils.escapeMarkdown(guild.name)}: <https://discord.gg/${invite.code}>`)
 
-    if(!message.guild)
+    if(message.guild)
       await message.channel.send(`${greentick} Created an invite link and sent it in your DMs`)
 
   } catch(e) {

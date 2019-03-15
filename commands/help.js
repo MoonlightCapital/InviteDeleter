@@ -9,6 +9,9 @@ exports.run = async (client, message, args) => {
       .setTitle('Listing all commands')
       .setColor(0x99cc33)
       .setDescription(commandList)
+
+      .addField('Links', `[GitHub](https://github.com/MoonlightCapital/InviteDeleter) | [Support](https://discord.gg/hNQWVVC) | [Add me to your server](${client.generateInvite(314436)})`)
+
       .setFooter(`Use ${client.config.prefix}help [command] to see detailed information about a specific command`)
     return message.channel.send(embed)
   }

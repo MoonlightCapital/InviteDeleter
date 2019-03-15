@@ -48,7 +48,7 @@ exports.help = {
 exports.config = {
   guildOnly: false,
   ownerOnly: false,
-  aliases: [],
+  aliases: ['gnome'],
   minLevel: 4,
   cooldown: 5,
 }

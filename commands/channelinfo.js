@@ -16,15 +16,15 @@ exports.run = async (client, message, args) => {
     case 'text':
       embed.addField('Type', ':hash: **Text**')
       .addField('NSFW', channel.nsfw)
-      .addField('Server ID', channel.guild.id)
+      .addField('Server', `${client.utils.escapeMarkdown(channel.guild.name)} (\`${channel.guild.id}\`)`)
       break
     case 'voice':
       embed.addField('Type', ':loud_sound: **Voice**')
-      .addField('Server ID', channel.guild.id)
+      .addField('Server', `${client.utils.escapeMarkdown(channel.guild.name)} (\`${channel.guild.id}\`)`)
       break
     case 'category':
       embed.addField('Type', ':file_cabinet: **Category**')
-      .addField('Server ID', channel.guild.id)
+      .addField('Server', `${client.utils.escapeMarkdown(channel.guild.name)} (\`${channel.guild.id}\`)`)
       break
     case 'dm':
       embed.addField('Type', ':speaking_head: **Direct Message**')
