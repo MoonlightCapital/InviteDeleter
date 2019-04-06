@@ -1,4 +1,9 @@
 const list = {
+  '-3': {
+    level: -3,
+    name: 'Malicious bot',
+    icon: ':smiling_imp:'
+  },
   '-2': {
     level: -2,
     name: 'Globally banned',
