@@ -37,5 +37,5 @@ exports.config = {
   ownerOnly: false,
   aliases: ['neko'],
   minLevel: 0,
-  cooldown: 1,
+  cooldown: 20,
 }
