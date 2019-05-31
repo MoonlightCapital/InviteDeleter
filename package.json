@@ -19,6 +19,7 @@
   "dependencies": {
     "discord.js": "^11.4.2",
     "express": "^4.16.4",
+    "lokijs": "^1.5.6",
     "ms": "^2.1.1",
     "node-fetch": "^2.5.0",
     "sequelize": ">=5.3.0",

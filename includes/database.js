@@ -1,4 +1,26 @@
-const S = require('sequelize')
+const loki = require('lokijs')
+const cache = new Map()
+
+const db = new loki('database.db', {
+  autoload: true,
+  autosave: true,
+  autoloadCallback: loadCollections,
+  autosaveInterval: 1000
+})
+
+const collections = ['guilds', 'users', 'reports']
+function loadCollections () {
+  collections.forEach(x => {
+    let coll = db.addCollection(x)
+
+    db[x] = coll
+  })
+}
+
+
+//module.exports = db
+
+/*const S = require('sequelize')
 
 const sequelize = new S('database', 'user', 'password', {
     host: 'localhost',
@@ -8,8 +30,6 @@ const sequelize = new S('database', 'user', 'password', {
     // SQLite only
     storage: 'database.sqlite',
 })
-
-const cache = new Map()
 
 const Users = sequelize.define('users', {
   id: {
@@ -32,27 +52,27 @@ const Users = sequelize.define('users', {
   }
 })
 
-Users.sync()
+Users.sync()*/
 
 async function getUser(user) {
-  const data = cache.get(user) || await Users.findOne({where: {id: user}})
+  const data = cache.get(user) || db.users.findOne({id: user})
   if(data) await cacheUser(data)
   return data
 }
 
 async function cacheUser(user) {
-  const stuff = {
-    id: user.id,
-    powerlevel: user.powerlevel,
-    blacklistReason: user.blacklistReason,
-    cardColor: user.cardColor,
-    points: user.points
-  }
-  cache.set(user.id, stuff)
+  cache.set(user.id, user)
 }
 
 async function addUser(id) {
-  const user = await Users.create({id: id})
+  const user = await db.users.insert({
+    id: id,
+    powerlevel: 0,
+    blacklistReason: '',
+    cardColor: '#9B9B9B',
+    points: 0
+  })
+
   await cacheUser(user)
   return user
 }
@@ -64,17 +84,17 @@ async function forceUser(id) {
 }
 
 async function getUserFresh(user) {
-  return await Users.findOne({where: {id: user}})
+  return db.users.findOne({id: user})
 }
 
-async function updateUser(data, user) {
-  await Users.update(data, {where: {id: user}})
+async function updateUser(data) {
+  await db.users.update(data)
 
-  const update = await getUserFresh(user)
+  const update = await getUserFresh(data.id)
 
   await cacheUser(update)
 
   return update
 }
 
-module.exports = {getUser, cacheUser, addUser, forceUser, getUserFresh, updateUser}
+module.exports = {getUser, cacheUser, addUser, forceUser, getUserFresh, updateUser, _raw: db}

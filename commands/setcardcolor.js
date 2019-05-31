@@ -5,7 +5,7 @@ const pattern = /^#[A-Fa-f0-9]{6}$/gmi
 exports.run = async (client, message, args) => {
 
   if(args.length < 2)
-    return message.channel.send(`${yellowtick} Please provide an user and a level`)
+    return message.channel.send(`${yellowtick} Please provide an user and a color`)
 
   const userMention = client.utils.parseMention(args.shift())
   if(!userMention)
@@ -26,7 +26,9 @@ exports.run = async (client, message, args) => {
   if(!colorMatch)
     return message.channel.send(`${yellowtick} Please provide a valid color`)
 
-  await client.db.updateUser({cardColor: color}, data.id)
+  data.cardColor = color
+
+  await client.db.updateUser(data)
 
   message.channel.send(`${greentick} \`${data.id}\`'s card color was set to ${color}`)
   logHook.send(`:rainbow: ${client.utils.escapeMarkdown(message.author.tag)} (\`${message.author.id}\`) set \`${data.id}\`'s card color to **${color}**`)

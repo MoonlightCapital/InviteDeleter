@@ -43,8 +43,10 @@ exports.run = async (client, message) => {
 
     logHook.send(`:tickets: ${client.utils.escapeMarkdown(message.author.tag)} (\`${message.author.id}\`) applied from server \`${message.guild.id}\``)
 
+    message.author.data.powerlevel = 1 //this will go unused if the user is a global mod, but who cares
+
     if(message.author.data.powerlevel < 3)
-      await client.db.updateUser({powerlevel: 1}, message.author.id)
+      await client.db.updateUser(message.author.data)
   } else {
     msg.push(`${yellowtick} Some checks failed, please fix them before trying to apply again`)
   }

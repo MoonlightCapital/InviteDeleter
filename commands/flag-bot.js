@@ -25,7 +25,10 @@ exports.run = async (client, message, args) => {
     if(user.data.powerlevel >= message.author.data.powerlevel)
       return message.channel.send(`${redtick} You cannot ban that user because their powerlevel is too high`)
 
-    await client.db.updateUser({powerlevel: -3, blacklistReason: reason}, user.id)
+    user.data.powerlevel = -3
+    user.data.blacklistReason = reason
+
+    await client.db.updateUser(user.data)
 
     message.channel.send(`${greentick} Flagged \`${user.id}\` as malicious`)
     logHook.send(`:triangular_flag_on_post: ${client.utils.escapeMarkdown(message.author.tag)} (\`${message.author.id}\`) flagged as malicious ${user.tag} (\`${user.id}\`) with reason: *${client.utils.escapeMarkdown(reason)}*`)

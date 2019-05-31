@@ -27,7 +27,10 @@ exports.run = async (client, message, args) => {
       guild.ban(user.id, `User banned by a bot global moderator for reason: ${reason}`)
     })
 
-    await client.db.updateUser({powerlevel: -2, blacklistReason: reason}, user.id)
+    user.data.powerlevel =  -2
+    user.data.blacklistReason = reason
+
+    await client.db.updateUser(user.data)
 
     message.channel.send(`${greentick} Banned \`${user.id}\` from ${potentialGuilds.size} servers`)
     logHook.send(`:hammer_and_pick: ${client.utils.escapeMarkdown(message.author.tag)} (\`${message.author.id}\`) globally banned ${user.tag} (\`${user.id}\`) with reason: *${client.utils.escapeMarkdown(reason)}*`)

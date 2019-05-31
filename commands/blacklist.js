@@ -21,7 +21,10 @@ exports.run = async (client, message, args) => {
     if(user.data.powerlevel >= message.author.data.powerlevel)
       return message.channel.send(`${redtick} You cannot blacklist that user because their powerlevel is too high`)
 
-    await client.db.updateUser({powerlevel: -1, blacklistReason: reason}, user.id)
+    user.data.powerlevel = -1
+    user.data.blacklistReason = reason
+
+    await client.db.updateUser(user.data)
 
     message.channel.send(`${greentick} ${client.utils.escapeMarkdown(user.tag)} (\`${user.id}\`) has been blacklisted`)
     logHook.send(`:black_medium_small_square: ${client.utils.escapeMarkdown(message.author.tag)} (\`${message.author.id}\`) blacklisted ${user.tag} (\`${user.id}\`) with reason: *${client.utils.escapeMarkdown(reason)}*`)

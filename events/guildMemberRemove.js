@@ -1,7 +1,7 @@
 const event = require('../event-stuff/constants')
 
 module.exports = async (client, member) => {
-  if(message.author.bot) return
+  if(member.user.bot) return
 
   const data = await client.db.getUser(member.id)
 

@@ -28,7 +28,9 @@ exports.run = async (client, message, args) => {
   if(!levelTag)
     return message.channel.send(`${redtick} Invalid powerlevel`)
 
-  await client.db.updateUser({powerlevel: level}, data.id)
+  data.powerlevel = level
+
+  await client.db.updateUser(data)
 
   message.channel.send(`${greentick} \`${data.id}\`'s powerlevel was set to ${levelTag}`)
 
