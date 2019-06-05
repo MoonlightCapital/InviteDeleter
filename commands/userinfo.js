@@ -22,7 +22,7 @@ exports.run = async (client, message, args) => {
   .setColor(data.cardColor)
 
   .addField('Power level', client.pl.getLevelTag(data.powerlevel), true)
-  .addField('Credits earned', data.points, true)
+  .addField('Contribution Points', data.points, true)
 
   if(data.blacklistReason && data.powerlevel < 0)
     embed.addField('Reason for blacklist/global ban', `\`\`\`${client.utils.escapeMarkdown(data.blacklistReason)}\`\`\``)
