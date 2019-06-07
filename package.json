@@ -5,7 +5,7 @@
   "main": "bot.js",
   "scripts": {
     "test": "",
-    "start": "node .",
+    "start": "node ."
   },
   "keywords": [],
   "author": "MoonlightCapital",
