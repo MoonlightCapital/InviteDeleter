@@ -4,7 +4,7 @@ const {logHook} = require('../includes/logging')
 const {execSync} = require('child_process')
 
 exports.run = async (client, message) => {
-  execSync('git fetch origin && git reset --hard origin/event')
+  execSync('git fetch origin && git reset --hard origin/master')
 
   message.channel.send(`${greentick} Bot updated successfully`)
 }

@@ -21,8 +21,8 @@ const list = {
   },
   1: {
     level: 1,
-    name: 'Event attendee',
-    icon: ':tickets:'
+    name: 'Beta tester',
+    icon: ':beginner:'
   },
   2: {
     level: 2,
@@ -31,8 +31,8 @@ const list = {
   },
   3: {
     level: 3,
-    name: 'Event staff',
-    icon: ':tada:'
+    name: 'Bot staff',
+    icon: ':wrench:'
   },
   4: {
     level: 4,

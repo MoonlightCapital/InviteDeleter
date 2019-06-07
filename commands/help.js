@@ -3,7 +3,10 @@ const {redtick} = require('../includes/emotes')
 
 exports.run = async (client, message, args) => {
   if(!args[0]) {
-    const commandList = client.commands.filter(c => c.help.unlisted === false && c.config.minLevel <= message.author.data.powerlevel).map(c => `\`${c.help.name}\``).join(', ')
+    const commandList = client.commands
+    .filter(c => c.help.unlisted === false && c.config.minLevel <= message.author.data.powerlevel)
+    .map(c => `\`${client.config.prefix}${c.help.name}\` - ${c.help.info}`)
+    .join('\n')
 
     const embed = new RichEmbed()
       .setTitle('Listing all commands')

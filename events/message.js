@@ -15,7 +15,6 @@ setInterval( async function() {
   .filter(e=>!e.startsWith('##')) // Comments
   .filter(e=> e !== '')
   .map(e=>e.toLowerCase())
-  console.log(body, '\n', spamlist)
 }
 , 60000)
 
