@@ -88,9 +88,10 @@ async function getUserFresh(user) {
 }
 
 async function updateUser(data) {
-  await db.users.update(data)
+  db.users.update(data)
 
   const update = await getUserFresh(data.id)
+  console.log(update)
 
   await cacheUser(update)
 
