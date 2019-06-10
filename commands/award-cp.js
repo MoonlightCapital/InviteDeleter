@@ -17,7 +17,6 @@ exports.run = async (client, message, args) => {
 
   const amount = parseInt(args[0])
 
-
   if(Number.isNaN(amount))
     return message.channel.send(`${yellowtick} Please provide a valid number`)
 
@@ -27,4 +26,19 @@ exports.run = async (client, message, args) => {
 
   message.channel.send(`${greentick} \`${data.id}\` has been given ${amount} CP`)
   logHook.send(`:beginner:  ${client.utils.escapeMarkdown(message.author.tag)} (\`${message.author.id}\`) awarded \`${data.id}\` with **${amount}** CP`)
+}
+
+exports.help = {
+  name: 'award-cp',
+  info: 'Awards CP to an user',
+  usage: '<user> <amount>',
+  unlisted: false,
+}
+
+exports.config = {
+  guildOnly: false,
+  ownerOnly: false,
+  aliases: ['aw'],
+  minLevel: 3,
+  cooldown: 3,
 }
