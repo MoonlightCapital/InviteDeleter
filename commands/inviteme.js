@@ -8,6 +8,14 @@ exports.run = async (client, message, args) => {
   if(!guild || guild.deleted)
     return message.channel.send(`${redtick} You provided an invalid server ID, or I'm not in that server`)
 
+  const consent = guild.me.roles
+  .filter(r=>r.id !== guild.id) //this is the (@)everyone role
+  .some(r=>r.hasPermission('CREATE_INSTANT_INVITE', true, false))
+
+  if(!consent)
+    return message.channel.send(`${redtick} I do not have explicit permission to create invites in that server`)
+
+
   const channel = guild.channels.find(c=>c.permissionsFor(guild.me).has('CREATE_INSTANT_INVITE') && c.type !== 'category')
 
   if(!channel)
