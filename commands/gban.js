@@ -24,7 +24,9 @@ exports.run = async (client, message, args) => {
     const potentialGuilds = client.guilds.filter(g=>g.me.hasPermission('BAN_MEMBERS'))
 
     potentialGuilds.forEach(guild => {
-      guild.ban(user.id, `User banned by a bot global moderator for reason: ${reason}`)
+      guild.ban(user.id, `User banned by a bot global moderator for reason: ${reason}`).catch(e => {
+        console.error(e)
+      })
     })
 
     user.data.powerlevel =  -2
