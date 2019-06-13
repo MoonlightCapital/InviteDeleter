@@ -2,7 +2,7 @@
 [![GitHub license](https://img.shields.io/github/license/MoonlightCapital/InviteDeleter.svg)](https://github.com/MoonlightCapital/InviteDeleter/blob/master/LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/MoonlightCapital/InviteDeleter.svg)](https://github.com/MoonlightCapital/InviteDeleter/stargazers)
 
-![InviteDeleter](https://cdn.discordapp.com/attachments/314116801975943198/588781651660767282/intro-bannerArtboard_1.svg)
+![InviteDeleter](https://cdn.discordapp.com/attachments/314116801975943198/588786317132038191/invite-deleter-intro.svg)
 
 This is a powerful Discord bot based on a mutual help system to keep servers safe by banning a spam account from every server it's in either by automated or manual action. This will also decrease the rate of future spam attacks in involved servers.
 
