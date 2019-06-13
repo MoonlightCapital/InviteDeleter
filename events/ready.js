@@ -6,5 +6,5 @@ module.exports = async (client) => {
   console.log('===========================')
 
   //client.user.setPresence({ game: { name: `${client.config.prefix}help`, type: 'WATCHING' }})
-  client.user.setPresence({ game: { name: `Event soon | ${client.config.prefix}help`, type: 'WATCHING' }, status: 'dnd'})
+  client.user.setPresence({ game: { name: `${client.config.prefix}help | https://bit.ly/InviteDeleter`, type: 'WATCHING' }, status: 'dnd'})
 }
