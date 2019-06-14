@@ -23,6 +23,8 @@ exports.run = async (client, message, args) => {
 
     const potentialGuilds = client.guilds.filter(g=>g.me.hasPermission('BAN_MEMBERS'))
 
+    const msg = await message.channel.send(`${yellowtick} Attempting to ban \`${user.id}\` from ${potentialGuilds.size} servers, this may take a while...`)
+
     potentialGuilds.forEach(guild => {
       guild.ban(user.id, `User banned by a bot global moderator for reason: ${reason}`).catch(e => {
         console.error(e)
@@ -34,7 +36,7 @@ exports.run = async (client, message, args) => {
 
     await client.db.updateUser(user.data)
 
-    message.channel.send(`${greentick} Banned \`${user.id}\` from ${potentialGuilds.size} servers`)
+    msg.edit(`${greentick} Banned \`${user.id}\` from ${potentialGuilds.size} servers`)
     logHook.send(`:hammer_and_pick: ${client.utils.escapeMarkdown(message.author.tag)} (\`${message.author.id}\`) globally banned ${user.tag} (\`${user.id}\`) with reason: *${client.utils.escapeMarkdown(reason)}*`)
   }).catch(e => {
     message.channel.send(`${redtick} An invalid user was provided, or something went wrong`)
