@@ -71,6 +71,10 @@ module.exports = async (client, message) => {
     return
   }
 
+  if(message.guild) {
+    if(!message.channel.permissionsFor(message.guild.me).has('VIEW_CHANNEL', 'SEND_MESSAGES', 'EMBED_LINKS')) return
+  }
+
 
   try {
     cooldownCache.add(limitFlag)
