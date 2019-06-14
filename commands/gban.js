@@ -29,19 +29,22 @@ exports.run = async (client, message, args) => {
     if (message.channel.permissionsFor(clientmember).has('SEND_MESSAGES'))
         let completemessage = await message.channel.send(`Banning \`${user.id}\` from ${potentialGuilds.size} servers`)
 
+    let guilderrors = 0;
+
     potentialGuilds.forEach(guild => {
       guild.ban(user.id, `User banned by a bot global moderator for reason: ${reason}`).catch(e => {
         console.error(e)
+        guilderrors++;
       })
     })
 
-    user.data.powerlevel =  -2
+    user.data.powerlevel = -2
     user.data.blacklistReason = reason
 
     await client.db.updateUser(user.data)
 
     if (completemessage)
-        completemessage.edit(`${greentick} Banned \`${user.id}\` from ${potentialGuilds.size} servers`)
+        completemessage.edit(`${greentick} Banned \`${user.id}\` from ${potentialGuilds.size} servers. Problematic guild count: ${guilderrors}`)
 
     logHook.send(`:hammer_and_pick: ${client.utils.escapeMarkdown(message.author.tag)} (\`${message.author.id}\`) globally banned ${user.tag} (\`${user.id}\`) with reason: *${client.utils.escapeMarkdown(reason)}*`)
   }).catch(e => {
