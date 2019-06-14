@@ -14,7 +14,11 @@ const fs = require('fs')
 const config = require('./config.js')
 const {errorHook} = require('./includes/logging')
 
-const client = new Discord.Client({disabledEvents: ['TYPING_START']})
+const client = new Discord.Client({
+  disabledEvents: ['TYPING_START'],
+  restWsBridgeTimeout: 10000,
+  restTimeOffset: 1000
+})
 
 client.config = config
 client.dversion = Discord.version
