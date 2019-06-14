@@ -27,7 +27,7 @@ exports.run = async (client, message, args) => {
     let clientmember = await message.guild.members.get(client.user.id)
 
     if (message.channel.permissionsFor(clientmember).has('SEND_MESSAGES'))
-        let completemessage = await message.channel.send(`Banning \`${user.id}\` from ${potentialGuilds.size} servers`)
+        completemessage = await message.channel.send(`Banning \`${user.id}\` from ${potentialGuilds.size} servers`)
 
     let guilderrors = 0;
 
