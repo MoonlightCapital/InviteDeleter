@@ -44,7 +44,6 @@ Please react with the green tick if you want to send, and with the red one to ca
       banlist.forEach(a=>message.guild.ban(a.id, a.blacklistReason))
 
       message.author.data.points -= 2
-      console.log(message.author.data)
       client.db.updateUser(message.author.data)
 
       msg.edit(`${greentick} The global ban list has been synced with this server`)
@@ -69,6 +68,6 @@ exports.config = {
   guildOnly: true,
   ownerOnly: false,
   aliases: [],
-  minLevel: 1,
-  cooldown: 0,
+  minLevel: 0,
+  cooldown: 10,
 }
