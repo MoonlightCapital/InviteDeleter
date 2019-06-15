@@ -11,7 +11,7 @@
   "author": "MoonlightCapital",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^11.5.1",
+    "discord.js": "^11.5-dev",
     "express": "^4.16.4",
     "lokijs": "^1.5.6",
     "ms": "^2.1.1",
