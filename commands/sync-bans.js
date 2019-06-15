@@ -39,9 +39,10 @@ Please react with the green tick if you want to send, and with the red one to ca
     if(collector.first().emoji.id === snowflakes.green) {
 
       const banlist = client.db._raw.users.where(u=>u.powerlevel === -2)
+      console.log(banlist.length)
 
 
-      banlist.forEach(a=>message.guild.ban(a.id, a.blacklistReason))
+      await banlist.forEach(a=>message.guild.ban(a.id, a.blacklistReason))
 
       message.author.data.points -= 2
       client.db.updateUser(message.author.data)
