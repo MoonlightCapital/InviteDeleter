@@ -22,7 +22,7 @@
     "uws": "^99.0.0"
   },
   "optionalDependencies": {
-    "bufferutil": "^4.0.0",
+    "bufferutil": "^4.0.1",
     "erlpack": "github:hammerandchisel/erlpack"
   }
 }
