@@ -89,8 +89,11 @@ async function getUserFresh(user) {
 
 async function updateUser(data) {
 
-  console.log(data)
+  console.info('================================')
+  console.info(data)
   delete data.user
+  console.info(data)
+  console.info('================================')
   db.users.update(data)
 
   const update = await getUserFresh(data.id)
