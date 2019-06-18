@@ -15,7 +15,7 @@
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "js-yaml": ">=3.13.1",
-    "lokijs": "^1.5.6x",
+    "lokijs": "github:techfort/LokiJS",
     "ms": "^2.1.2",
     "node-fetch": "^2.6.0",
     "sequelize": ">=5.8.9",

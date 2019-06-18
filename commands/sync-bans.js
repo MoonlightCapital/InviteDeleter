@@ -8,6 +8,7 @@ const snowflakes = {
   green: '466238645095890945'
 }
 
+
 exports.run = async (client, message, args) => {
 
   if(!message.member.hasPermission('BAN_MEMBERS'))

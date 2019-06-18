@@ -1,4 +1,10 @@
 const {greentick, redtick, yellowtick} = require('../includes/emotes')
+const maxAge = 259200000 // 72 hours
+
+const snowflakes = {
+  red: '466238619997175811',
+  green: '466238645095890945'
+}
 
 
 exports.run = async (client, message, args) => {
@@ -16,6 +22,38 @@ exports.run = async (client, message, args) => {
     return message.channel.id(`${yellowtick} Max length for reason is 200 characters`)
 
   client.fetchUser(userMention).then(async user => {
+
+
+    if((Date.now() - user.createdTimestamp) > maxAge) {
+
+      const prompt = await message.channel.send(`:warning: **This account is older than 72 hours, are you sure you want to ban it?**
+
+User tag: ${client.utils.escapeMarkdown(user.tag)}
+Created at: ${user.createdAt}
+`)
+
+      await prompt.react(snowflakes.green)
+      await prompt.react(snowflakes.red)
+
+      const reactionFilter = (r, u) => u.id === message.author.id && (r.emoji.name === 'greentick' || r.emoji.name === 'redtick')
+
+      try {
+        const collector = await prompt.awaitReactions(reactionFilter, {time: 30000, max: 1, errors: ["time"]})
+
+        if(collector.first().emoji.id === snowflakes.green) {
+
+          // Nothing to do here, proceed with the hammer
+
+        } else if(collector.first().emoji.id === snowflakes.red) {
+          return prompt.edit(`${greentick} Phew! That was close!`)
+        }
+
+      } catch(e) {
+        console.error(e)
+        return prompt.edit(`${yellowtick} Timeout: operation aborted`)
+      }
+    }
+
     user.data = await client.db.forceUser(user.id)
 
     if(user.data.powerlevel >= message.author.data.powerlevel)
