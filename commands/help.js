@@ -10,7 +10,7 @@ exports.run = async (client, message, args) => {
 
     const embed = new RichEmbed()
       .setTitle('Listing all commands')
-      .setColor(0x99cc33)
+      .setColor(process.env.THEME_COLOR)
       .setDescription(commandList)
 
       .addField('Links', `[GitHub](https://github.com/MoonlightCapital/InviteDeleter) | [Support](https://discord.gg/hNQWVVC) | [Add me to your server](${await client.generateInvite(314437)})`)
@@ -24,7 +24,7 @@ exports.run = async (client, message, args) => {
   if(!command || command.unlisted) return message.channel.send(`${redtick} Unknown command`)
 
   const embed = new RichEmbed()
-    .setColor(0x33cc99)
+    .setColor(process.env.THEME_COLOR)
     .addField('Description', command.help.info)
     .addField('Usage', `${client.config.prefix}${args[0]} ${command.help.usage}`)
     .addField('Minimum power level required', client.pl.getLevelTag(command.config.minLevel))

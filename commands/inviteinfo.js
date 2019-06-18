@@ -10,7 +10,7 @@ exports.run = async (client, message, args) => {
 
     const embed = new RichEmbed()
     .setTitle(`Information for invite code **${link.code}**`)
-    .setColor(0x008080)
+    .setColor(process.env.THEME_COLOR)
 
     .addField('Channel', `**#${client.utils.escapeMarkdown(link.channel.name)}** (\`${link.channel.id}\`)`)
     .addField('Server', `${client.utils.escapeMarkdown(link.guild.name)} (\`${link.guild.id}\`)`)

@@ -10,7 +10,7 @@ exports.run = async (client, message) => {
   const embed = new RichEmbed()
   .setTitle(`Statistics for ${client.user.username}`)
   .setThumbnail(client.user.displayAvatarURL)
-  .setColor(0x008080)
+  .setColor(process.env.THEME_COLOR)
 
   .addField('Uptime', uptime)
   .addField('Server count', serverCount)

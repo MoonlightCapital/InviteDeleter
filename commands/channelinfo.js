@@ -10,7 +10,7 @@ exports.run = async (client, message, args) => {
 
   const embed = new RichEmbed()
   .setTitle(`Information for channel ${channel.name || ''}`)
-  .setColor(0x11b6b0)
+  .setColor(process.env.THEME_COLOR)
 
   switch(channel.type) {
     case 'text':
