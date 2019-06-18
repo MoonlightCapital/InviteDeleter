@@ -1,5 +1,5 @@
 const {greentick, yellowtick, redtick} = require('../includes/emotes')
-const {logHook} = require('../includes/logging')
+
 
 exports.run = async (client, message, args) => {
 
@@ -15,7 +15,7 @@ exports.run = async (client, message, args) => {
 
   message.channel.send(`${greentick} Left server ${client.utils.escapeMarkdown(guild.name)} (\`${guild.id}\`)`)
 
-  logHook.send(`:leftwards_arrow_with_hook: ${client.utils.escapeMarkdown(message.author.tag)} (\`${message.author.id}\`) removed the bot from server ${client.utils.escapeMarkdown(guild.name)} (\`${guild.id}\`)`)
+  client.specialChannels.BOT_LOG.send(`:leftwards_arrow_with_hook: ${client.utils.escapeMarkdown(message.author.tag)} (\`${message.author.id}\`) removed the bot from server ${client.utils.escapeMarkdown(guild.name)} (\`${guild.id}\`)`)
 }
 
 exports.help = {

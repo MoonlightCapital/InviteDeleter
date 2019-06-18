@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const http = require('http')
 const express = require('express')
 const app = express()
@@ -12,7 +14,6 @@ setInterval(() => {
 const Discord = require('discord.js')
 const fs = require('fs')
 const config = require('./config.js')
-const {errorHook} = require('./includes/logging')
 
 const client = new Discord.Client({
   disabledEvents: ['TYPING_START'],
@@ -55,11 +56,11 @@ client.login(config.token)
 
 process.on('unhandledRejection', (error, p) => {
   console.error(error)
-  errorHook.send(new Discord.RichEmbed().setColor(0xFFFF00).setTitle(`Unhandled promise rejection as ${p}`).setDescription(error.toString()))
+  client.specialChannels.ERROR_LOG.send(new Discord.RichEmbed().setColor(0xFFFF00).setTitle(`Unhandled promise rejection as ${p}`).setDescription(error.toString()))
 })
 
 process.on('uncaughtException', error => {
   console.error(error.stack)
-  errorHook.send(new Discord.RichEmbed().setColor(0xFF0000).setTitle(`Uncaught exception`).setDescription(error.stack))
+  client.specialChannels.ERROR_LOG.send(new Discord.RichEmbed().setColor(0xFF0000).setTitle(`Uncaught exception`).setDescription(error.stack))
   process.exit(1)
 })

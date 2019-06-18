@@ -1,5 +1,5 @@
 const {greentick, redtick, yellowtick} = require('../includes/emotes')
-const {logHook} = require('../includes/logging')
+
 const pattern = /^#[A-Fa-f0-9]{6}$/gmi
 
 exports.run = async (client, message, args) => {
@@ -31,7 +31,7 @@ exports.run = async (client, message, args) => {
   await client.db.updateUser(data)
 
   message.channel.send(`${greentick} \`${data.id}\`'s card color was set to ${color}`)
-  logHook.send(`:rainbow: ${client.utils.escapeMarkdown(message.author.tag)} (\`${message.author.id}\`) set \`${data.id}\`'s card color to **${color}**`)
+  client.specialChannels.BOT_LOG.send(`:rainbow: ${client.utils.escapeMarkdown(message.author.tag)} (\`${message.author.id}\`) set \`${data.id}\`'s card color to **${color}**`)
 }
 
 exports.help = {

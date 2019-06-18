@@ -1,5 +1,5 @@
 const {redtick} = require('../includes/emotes')
-const {logHook, commandHook, errorHook, formatCommand} = require('../includes/logging')
+const {formatCommand} = require('../includes/logging')
 const {RichEmbed} = require('discord.js')
 
 const fetch = require('node-fetch')
@@ -38,7 +38,7 @@ module.exports = async (client, message) => {
       spammer.blacklistReason = 'Automatic ban: posting a message containing spam words'
       await client.db.updateUser(spammer)
 
-      logHook.send(`:bomb: \`${message.member.id}\` has been automatically gbanned for posting spam messages`)
+      client.specialChannels.BOT_LOG.send(`:bomb: \`${message.member.id}\` has been automatically gbanned for posting spam messages`)
 
       return
     }
@@ -84,9 +84,9 @@ module.exports = async (client, message) => {
 
   } catch (error) {
     console.error(error)
-    errorHook.send(new RichEmbed().setDescription(error.toString()).setFooter(Date.now()))
+    client.specialChannels.ERROR_LOG.send(new RichEmbed().setDescription(error.toString()).setFooter(Date.now()))
     message.channel.send(`${redtick} Something went wrong while executing the command. Please notify the developers at <https://discord.gg/8376ZVg>`).catch(console.error)
   } finally {
-    commandHook.send(formatCommand(message, command), new RichEmbed().setDescription(client.utils.escapeMarkdown(message.cleanContent)).setFooter(Date.now()))
+    client.specialChannels.COMMAND_LOG.send(formatCommand(message, command), new RichEmbed().setDescription(client.utils.escapeMarkdown(message.cleanContent)).setFooter(Date.now()))
   }
 }

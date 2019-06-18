@@ -1,5 +1,5 @@
 const {greentick, redtick, yellowtick} = require('../includes/emotes')
-const {logHook} = require('../includes/logging')
+
 
 exports.run = async (client, message, args) => {
 
@@ -29,7 +29,7 @@ exports.run = async (client, message, args) => {
   await client.db.updateUser(data)
 
   message.channel.send(`${greentick} \`${data.id}\` has been given ${amount} CP`)
-  logHook.send(`:beginner:  ${client.utils.escapeMarkdown(message.author.tag)} (\`${message.author.id}\`) awarded \`${data.id}\` with **${amount}** CP`)
+  client.specialChannels.BOT_LOG.send(`:beginner:  ${client.utils.escapeMarkdown(message.author.tag)} (\`${message.author.id}\`) awarded \`${data.id}\` with **${amount}** CP`)
 }
 
 exports.help = {

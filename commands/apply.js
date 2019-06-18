@@ -1,5 +1,5 @@
 const {greentick, yellowtick, redtick} = require('../includes/emotes')
-const {logHook} = require('../includes/logging')
+
 const event = require('../event-stuff/constants')
 const checks = require('../event-stuff/verification')
 
@@ -41,7 +41,7 @@ exports.run = async (client, message) => {
     msg.push(`${greentick} All good, ${message.author}, you have been given access to the event channels!`)
     client.guilds.get(event.server).members.get(message.author.id).addRole(event.role)
 
-    logHook.send(`:tickets: ${client.utils.escapeMarkdown(message.author.tag)} (\`${message.author.id}\`) applied from server \`${message.guild.id}\``)
+    client.specialChannels.BOT_LOG.send(`:tickets: ${client.utils.escapeMarkdown(message.author.tag)} (\`${message.author.id}\`) applied from server \`${message.guild.id}\``)
 
     message.author.data.powerlevel = 1 //this will go unused if the user is a global mod, but who cares
 

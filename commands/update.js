@@ -1,5 +1,5 @@
 const {greentick, redtick} = require('../includes/emotes')
-const {logHook} = require('../includes/logging')
+
 
 const {execSync} = require('child_process')
 

@@ -1,5 +1,5 @@
 const {greentick, yellowtick, redtick} = require('../includes/emotes')
-const {logHook} = require('../includes/logging')
+
 const fs = require('fs')
 const {RichEmbed, Attachment} = require('discord.js')
 

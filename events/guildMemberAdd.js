@@ -1,6 +1,6 @@
 //const pattern = /((?:https?:\/\/)?(?:www\.)?(?:discord|twitter|paypal|twitch|selly)(?:\.me|\.tv|app\.com|\.gg|\.io|\/invite)(?:\/\w*)?)/gmi
 const pattern = /((?:https?:\/\/)?(?:www\.)?(?:discord|paypal|selly)(?:\.me|app\.com|\.gg|\.io|\/invite)(?:\/\w*)?)/gmi
-const {logHook} = require('../includes/logging')
+
 const {RichEmbed} = require('discord.js')
 
 const maliciousBotEmbed = new RichEmbed()
@@ -42,7 +42,7 @@ module.exports = async (client, member) => {
     })
     await client.db.forceUser(member.id)
     await client.db.updateUser({powerlevel: -2, blacklistReason: 'Automatic ban: suspicious link in username'}, member.id)
-    logHook.send(`:bomb: \`${member.id}\` has been automatically gbanned for having a match in its username`)
+    client.specialChannels.BOT_LOG.send(`:bomb: \`${member.id}\` has been automatically gbanned for having a match in its username`)
 
   }
 }

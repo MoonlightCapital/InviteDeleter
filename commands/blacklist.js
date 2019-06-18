@@ -1,5 +1,5 @@
 const {greentick, redtick, yellowtick} = require('../includes/emotes')
-const {logHook} = require('../includes/logging')
+
 
 exports.run = async (client, message, args) => {
 
@@ -27,7 +27,7 @@ exports.run = async (client, message, args) => {
     await client.db.updateUser(user.data)
 
     message.channel.send(`${greentick} ${client.utils.escapeMarkdown(user.tag)} (\`${user.id}\`) has been blacklisted`)
-    logHook.send(`:black_medium_small_square: ${client.utils.escapeMarkdown(message.author.tag)} (\`${message.author.id}\`) blacklisted ${user.tag} (\`${user.id}\`) with reason: *${client.utils.escapeMarkdown(reason)}*`)
+    client.specialChannels.BOT_LOG.send(`:black_medium_small_square: ${client.utils.escapeMarkdown(message.author.tag)} (\`${message.author.id}\`) blacklisted ${user.tag} (\`${user.id}\`) with reason: *${client.utils.escapeMarkdown(reason)}*`)
   }).catch(e => {
     message.channel.send(`${redtick} An invalid user was provided, or something went wrong`)
     console.error(e)
