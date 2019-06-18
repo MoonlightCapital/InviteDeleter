@@ -1,6 +1,7 @@
 [![GitHub issues](https://img.shields.io/github/issues/MoonlightCapital/InviteDeleter.svg)](https://github.com/MoonlightCapital/InviteDeleter/issues)
 [![GitHub license](https://img.shields.io/github/license/MoonlightCapital/InviteDeleter.svg)](https://github.com/MoonlightCapital/InviteDeleter/blob/master/LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/MoonlightCapital/InviteDeleter.svg)](https://github.com/MoonlightCapital/InviteDeleter/stargazers)
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=MoonlightCapital/InviteDeleter)](https://dependabot.com)
 
 ![InviteDeleter](https://cdn.discordapp.com/attachments/314116801975943198/588786317132038191/invite-deleter-intro.svg)
 
