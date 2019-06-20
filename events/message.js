@@ -18,7 +18,7 @@ setInterval( async function() {
 }
 , 60000)
 
-const maxAge = 259200000 // 72 hours
+const maxAge = 604800000 // One week
 
 const cooldownCache = new Set()
 
