@@ -44,6 +44,7 @@ module.exports = async (client, message) => {
         .addField("User", `${client.utils.escapeMarkdown(message.member.user.tag)} (\`${message.member.id}\`)`)
         .addField("Server", `${client.utils.escapeMarkdown(message.guild.name)} (\`${message.guild.id}\`)`)
         .addField('Reason', 'Posting spam messages')
+        .setDescription(message.content)
 
       client.specialChannels.BOT_LOG.send(detailsEmbed)
       
