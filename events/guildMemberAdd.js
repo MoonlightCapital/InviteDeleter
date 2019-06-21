@@ -42,7 +42,14 @@ module.exports = async (client, member) => {
     })
     await client.db.forceUser(member.id)
     await client.db.updateUser({powerlevel: -2, blacklistReason: 'Automatic ban: suspicious link in username'}, member.id)
-    client.specialChannels.BOT_LOG.send(`:bomb: \`${member.id}\` has been automatically gbanned for having a match in its username. (Ban originated in server \`${member.guild.id}\`)`)
+    
+    const detailsEmbed = new RichEmbed()
+      .setTitle(":bomb: User gbanned")
+      .setDescription(`An user was gbanned for having a match in its username`)
+      .addField("User", `${member.user.tag} [\`${member.id}\`]`)
+      .addField("Server", `\`${member.guild.id}\``)
+    
+    client.specialChannels.BOT_LOG.send(detailsEmbed)
 
   }
 }
