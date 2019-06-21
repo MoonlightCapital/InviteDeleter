@@ -52,7 +52,7 @@ commandFiles.forEach(file => {
   client.commands.set(commandName, command)
 })
 
-client.login(config.token)
+client.login(process.env.BOT_TOKEN)
 
 process.on('unhandledRejection', (error, p) => {
   console.error(error)
