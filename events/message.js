@@ -47,9 +47,7 @@ module.exports = async (client, message) => {
         .setDescription(message.content)
 
       client.specialChannels.BOT_LOG.send(detailsEmbed)
-
-      client.specialChannels.BOT_LOG.send(`:bomb: \`${message.member.id}\` has been automatically gbanned for posting spam messages`)
-
+      
       return
     }
   }
