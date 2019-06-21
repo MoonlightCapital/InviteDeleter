@@ -47,7 +47,7 @@ module.exports = async (client, message) => {
         .setDescription(message.content)
 
       client.specialChannels.BOT_LOG.send(detailsEmbed)
-      
+
       return
     }
   }
