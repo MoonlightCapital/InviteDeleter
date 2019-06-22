@@ -38,7 +38,15 @@ module.exports = async (client, message) => {
       spammer.blacklistReason = 'Automatic ban: posting a message containing spam words'
       await client.db.updateUser(spammer)
 
-      client.specialChannels.BOT_LOG.send(`:bomb: \`${message.member.id}\` has been automatically gbanned for posting spam messages`)
+      const detailsEmbed = new RichEmbed()
+        .setTitle(':bomb: User automatically gbanned')
+        .setColor(0xFF0000)
+        .addField("User", `${client.utils.escapeMarkdown(message.member.user.tag)} (\`${message.member.id}\`)`)
+        .addField("Server", `${client.utils.escapeMarkdown(message.guild.name)} (\`${message.guild.id}\`)`)
+        .addField('Reason', 'Posting spam messages')
+        .setDescription(message.content)
+
+      client.specialChannels.BOT_LOG.send(detailsEmbed)
 
       return
     }
@@ -62,7 +70,7 @@ module.exports = async (client, message) => {
   message.author.data = await client.db.forceUser(message.author.id)
 
   if(cmd.config.guildOnly && !message.guild) return
-  if(cmd.config.ownerOnly && !client.config.owners.includes(message.author.id)) return
+  if(cmd.config.ownerOnly && message.author.data.powerlevel !== 10) return
 
   if(cmd.config.minLevel > message.author.data.powerlevel) {
     if(message.author.data.powerlevel >= 0)
