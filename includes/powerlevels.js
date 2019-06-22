@@ -39,7 +39,12 @@ const list = {
     name: 'Global moderator',
     icon: ':crossed_swords:'
   },
-
+  5: {
+    level: 5,
+    name: 'Global admin',
+    icon: '<:gnome:576402139639971860>'
+  },
+  
   9: {
     level: 9,
     name: 'Da bot',
