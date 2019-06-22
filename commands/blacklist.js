@@ -27,6 +27,14 @@ exports.run = async (client, message, args) => {
     await client.db.updateUser(user.data)
 
     message.channel.send(`${greentick} ${client.utils.escapeMarkdown(user.tag)} (\`${user.id}\`) has been blacklisted`)
+    
+    //leave his server
+    try {
+      client.guilds.filter(c=>c.owner.id === user.id).leave()
+    } catch (e){
+      console.log(e)
+    }
+    
     client.specialChannels.BOT_LOG.send(`:black_medium_small_square: ${client.utils.escapeMarkdown(message.author.tag)} (\`${message.author.id}\`) blacklisted ${user.tag} (\`${user.id}\`) with reason: *${client.utils.escapeMarkdown(reason)}*`)
   }).catch(e => {
     message.channel.send(`${redtick} An invalid user was provided, or something went wrong`)
