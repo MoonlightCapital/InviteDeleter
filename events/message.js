@@ -4,7 +4,7 @@ const {RichEmbed} = require('discord.js')
 
 const fetch = require('node-fetch')
 
-const url = 'https://gist.githubusercontent.com/blastoise186/a6d4961759a20d7d83b69f83d717af03/raw/'
+const url = 'https://gist.githubusercontent.com/blastoise186/a6d4961759a20d7d83b69f83d717af03/raw/c9af2fe1a8ac2a53ba3adc73acd14c153d6688a2/phrase-blacklist.txt'
 
 let spamlist = []
 
