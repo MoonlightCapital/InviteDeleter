@@ -75,7 +75,16 @@ Created at: ${user.createdAt}
     await client.db.updateUser(user.data)
 
     msg.edit(`${greentick} Banned \`${user.id}\` from ${potentialGuilds.size} servers`)
-    client.specialChannels.BOT_LOG.send(`:hammer_and_pick: ${client.utils.escapeMarkdown(message.author.tag)} (\`${message.author.id}\`) globally banned ${user.tag} (\`${user.id}\`) with reason: *${client.utils.escapeMarkdown(reason)}*`)
+    
+    const detailsEmbed = new RichEmbed()
+      .setTitle(':bomb: User manually gbanned')
+      .setColor(0x00AF08)
+      .addField("User", `${user.tag} (\`${user.id}\`)`)
+      .addField("Moderator", `${client.utils.escapeMarkdown(message.author.tag)} (\`${message.author.id}\`)`)
+      .addField('Reason', `*${client.utils.escapeMarkdown(reason)}*`)
+
+    client.specialChannels.BOT_LOG.send(detailsEmbed)
+
   }).catch(e => {
     message.channel.send(`${redtick} An invalid user was provided, or something went wrong`)
     console.error(e)
