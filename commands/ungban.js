@@ -62,7 +62,7 @@ exports.help = {
 exports.config = {
   guildOnly: false,
   ownerOnly: false,
-  aliases: ['ungnome'],
+  aliases: ['ungnome','gunban'],
   minLevel: 5,
   cooldown: 5,
 }
