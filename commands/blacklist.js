@@ -30,7 +30,11 @@ exports.run = async (client, message, args) => {
     
     //leave his server
     try {
-      client.guilds.filter(c=>c.owner.id === user.id).leave()
+      if(client.guilds.filter(c=>c.owner.id === user.id) > 0) {
+        client.guilds.filter(c=>c.owner.id === user.id).forEach(g=>{
+         g.leave()
+        })
+      }
     } catch (e){
       console.log(e)
     }
