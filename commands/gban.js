@@ -78,8 +78,8 @@ Created at: ${user.createdAt}
     
     const detailsEmbed = new RichEmbed()
       .setTitle(':bomb: User manually gbanned')
-      .setColor(0x00AF08)
-      .addField("User", `${user.tag} (\`${user.id}\`)`)
+      .setColor(0xFF0000)
+      .addField("User", `${client.utils.escapeMarkdown(user.tag)} (\`${user.id}\`)`)
       .addField("Moderator", `${client.utils.escapeMarkdown(message.author.tag)} (\`${message.author.id}\`)`)
       .addField('Reason', `*${client.utils.escapeMarkdown(reason)}*`)
 
