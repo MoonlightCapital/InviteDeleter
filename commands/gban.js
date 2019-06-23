@@ -69,7 +69,7 @@ Created at: ${user.createdAt}
       })
     })
 
-    user.data.powerlevel =  -2
+    user.data.powerlevel = -2
     user.data.blacklistReason = reason
 
     await client.db.updateUser(user.data)
@@ -87,7 +87,7 @@ Created at: ${user.createdAt}
 
   }).catch(e => {
     message.channel.send(`${redtick} An invalid user was provided, or something went wrong`)
-    client.specialChannels.ERROR_LOG.send(new RichEmbed().setTitle("Error from GBan Command").setDescription(e))
+    client.specialChannels.ERROR_LOG.send(new RichEmbed().setTitle("Error in gban command").setDescription(`\`\`\`${e}\`\`\``))
     console.error(e)
   })
 
