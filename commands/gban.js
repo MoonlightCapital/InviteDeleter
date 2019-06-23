@@ -87,6 +87,7 @@ Created at: ${user.createdAt}
 
   }).catch(e => {
     message.channel.send(`${redtick} An invalid user was provided, or something went wrong`)
+    client.specialChannels.BOT_ERROR.send(new RichEmbed().setTitle("Error from GBan Command").setDescription(e))
     console.error(e)
   })
 
