@@ -32,7 +32,7 @@ exports.run = async (client, message, args) => {
     try {
         client.guilds.filter(c=>c.owner.id === user.id).forEach(g=>g.leave())
     } catch (e){
-      console.log(e)
+      console.error(e)
     }
     
     client.specialChannels.BOT_LOG.send(`:black_medium_small_square: ${client.utils.escapeMarkdown(message.author.tag)} (\`${message.author.id}\`) blacklisted ${user.tag} (\`${user.id}\`) with reason: *${client.utils.escapeMarkdown(reason)}*`)
