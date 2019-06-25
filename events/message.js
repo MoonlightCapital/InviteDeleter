@@ -4,7 +4,7 @@ const {RichEmbed} = require('discord.js')
 
 const fetch = require('node-fetch')
 
-const url = 'https://gist.githubusercontent.com/blastoise186/a6d4961759a20d7d83b69f83d717af03/raw/'
+const url = 'https://gist.githubusercontent.com/blastoise186/a6d4961759a20d7d83b69f83d717af03/raw/c9af2fe1a8ac2a53ba3adc73acd14c153d6688a2/phrase-blacklist.txt'
 
 let spamlist = []
 
@@ -23,32 +23,37 @@ const maxAge = 604800000 // One week
 const cooldownCache = new Set()
 
 module.exports = async (client, message) => {
+  try {
 
-  if(message.author.bot) return
+    if(message.author.bot) return
 
-  if(message.guild && spamlist.some(e=>message.content.toLowerCase().includes(e)) && message.guild.roles.some(r=>r.name === '+enable-experimental-blacklist')) {
+    if(message.guild && spamlist.some(e=>message.content.toLowerCase().includes(e)) && message.guild.roles.some(r=>r.name === '+enable-experimental-blacklist')) {
 
-    if((Date.now() - message.author.createdTimestamp) < maxAge) {
-      if(message.member.bannable) message.guild.ban(message.member.id, {reason: 'Automatic ban: posting a message containing spam words', days: 7}).catch(console.error)
-      client.guilds.filter(g=>g.me.hasPermission('BAN_MEMBERS')).forEach(guild => {
-        guild.ban(message.member.id, 'Spam content/link in messages').catch(console.error)
-      })
-      const spammer = await client.db.forceUser(message.member.id)
-      spammer.powerlevel = -2
-      spammer.blacklistReason = 'Automatic ban: posting a message containing spam words'
-      await client.db.updateUser(spammer)
+      if((Date.now() - message.author.createdTimestamp) < maxAge) {
+        if(message.member.bannable) message.guild.ban(message.member.id, {reason: 'Automatic ban: posting a message containing spam words', days: 7}).catch(console.error)
+        client.guilds.filter(g=>g.me.hasPermission('BAN_MEMBERS')).forEach(guild => {
+          guild.ban(message.member.id, 'Spam content/link in messages').catch(console.error)
+        })
+        const spammer = await client.db.forceUser(message.member.id)
+        spammer.powerlevel = -2
+        spammer.blacklistReason = 'Automatic ban: posting a message containing spam words'
+        await client.db.updateUser(spammer)
 
-      const detailsEmbed = new RichEmbed()
-        .setTitle(':bomb: User automatically gbanned')
-        .setColor(0xFF0000)
-        .addField("User", `${client.utils.escapeMarkdown(message.member.user.tag)} (\`${message.member.id}\`)`)
-        .addField("Server", `${client.utils.escapeMarkdown(message.guild.name)} (\`${message.guild.id}\`)`)
-        .addField('Reason', 'Posting spam messages')
-        .setDescription(message.content)
+        const detailsEmbed = new RichEmbed()
+          .setTitle(':bomb: User automatically gbanned')
+          .setColor(0xFF0000)
+          .addField("User", `${client.utils.escapeMarkdown(message.member.user.tag)} (\`${message.member.id}\`)`)
+          .addField("Server", `${client.utils.escapeMarkdown(message.guild.name)} (\`${message.guild.id}\`)`)
+          .addField('Reason', 'Posting spam messages')
+          .setDescription(message.content)
 
-      client.specialChannels.BOT_LOG.send(detailsEmbed)
+        client.specialChannels.BOT_LOG.send(detailsEmbed)
 
-      return
+        return
+      }
+    } catch (e) {
+      console.error(error)
+      client.specialChannels.ERROR_LOG.send(new RichEmbed().setDescription(error.toString()).setFooter(Date.now()))
     }
   }
 
