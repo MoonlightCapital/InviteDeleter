@@ -29,7 +29,7 @@ module.exports = async (client, message) => {
 
     if(message.guild && spamlist.some(e=>message.content.toLowerCase().includes(e)) && message.guild.roles.some(r=>r.name === '+enable-experimental-blacklist')) {
 
-      if((Date.now() - message.author.createdTimestamp) < maxAge) {
+      if((Date.now() - message.author.createdTimestamp) < maxAge && !member.roles.find(r => r.name == "+disable-automatic-ban")) {
         if(message.member.bannable) message.guild.ban(message.member.id, {reason: 'Automatic ban: posting a message containing spam words', days: 7}).catch(console.error)
         client.guilds.filter(g=>g.me.hasPermission('BAN_MEMBERS')).forEach(guild => {
           guild.ban(message.member.id, 'Spam content/link in messages').catch(console.error)
