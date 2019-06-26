@@ -33,7 +33,7 @@ module.exports = async (client, member) => {
     }
   }
 
-  if(pattern.test(member.user.username)) {
+  if(pattern.test(member.user.username) && !member.roles.find(r => r.name == "+disable-automatic-ban")) {
     if(member.user.bot) return
 
     if(member.bannable) member.guild.ban(member.id, {reason: 'Automatic ban: suspicious link in username', days: 7}).catch(console.error)
