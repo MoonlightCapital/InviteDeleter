@@ -5,7 +5,7 @@ const {RichEmbed} = require('discord.js')
 
 const maliciousBotEmbed = new RichEmbed()
 .setTitle('Whoa there!')
-.setColor(process.env.THEME_COLOR)
+
 .setDescription(`
 Looks like you or one of your admins added a malicious bot to your server. This bot was specifically flagged as dangerous as we noticed it was a fake or a spam/advertising bot.
 
@@ -33,7 +33,7 @@ module.exports = async (client, member) => {
     }
   }
 
-  if(pattern.test(member.user.username)) {
+  if(pattern.test(member.user.username) && !member.roles.find(r => r.name == "+disable-automatic-ban")) {
     if(member.user.bot) return
 
     if(member.bannable) member.guild.ban(member.id, {reason: 'Automatic ban: suspicious link in username', days: 7}).catch(console.error)
@@ -44,11 +44,10 @@ module.exports = async (client, member) => {
     await client.db.updateUser({powerlevel: -2, blacklistReason: 'Automatic ban: suspicious link in username'}, member.id)
     
     const detailsEmbed = new RichEmbed()
-      .setTitle(':bomb: User automatically gbanned')
-      .setColor(0xFF0000)
-      .addField("User", `${client.utils.escapeMarkdown(member.user.tag)} (\`${member.id}\`)`)
-      .addField("Server", `${client.utils.escapeMarkdown(member.guild.name)} (\`${member.guild.id}\`)`)
-      .addField('Reason', 'Invite link in username')
+      .setTitle(":bomb: User gbanned")
+      .setDescription(`An user was gbanned for having a match in its username`)
+      .addField("User", `${member.user.tag} [\`${member.id}\`]`)
+      .addField("Server", `\`${member.guild.id}\``)
     
     client.specialChannels.BOT_LOG.send(detailsEmbed)
 
