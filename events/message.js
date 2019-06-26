@@ -51,10 +51,10 @@ module.exports = async (client, message) => {
 
         return
       }
-    } catch (e) {
-      console.error(error)
-      client.specialChannels.ERROR_LOG.send(new RichEmbed().setDescription(error.toString()).setFooter(Date.now()))
     }
+  } catch (e) {
+    console.error(error)
+    client.specialChannels.ERROR_LOG.send(new RichEmbed().setDescription(error.toString()).setFooter(Date.now()))
   }
 
   if(client.config.allowMentionPrefix) message.content = message.content.replace(new RegExp(`^<@!?${client.user.id}> `), client.config.prefix)
