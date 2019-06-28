@@ -52,7 +52,7 @@ module.exports = async (client, message) => {
         return
       }
     }
-  } catch (e) {
+  } catch (error) {
     console.error(error)
     client.specialChannels.ERROR_LOG.send(new RichEmbed().setDescription(error.toString()).setFooter(Date.now()))
   }
