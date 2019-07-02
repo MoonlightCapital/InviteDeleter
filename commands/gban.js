@@ -1,3 +1,4 @@
+const {RichEmbed} = require('discord.js')
 const {greentick, redtick, yellowtick} = require('../includes/emotes')
 const maxAge = 259200000 // 72 hours
 
