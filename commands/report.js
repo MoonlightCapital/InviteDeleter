@@ -24,7 +24,7 @@ exports.run = async (client, message, args) => {
     return message.channel.send(`${redtick} Please specify an user and a reason`)
 
   const user = client.utils.parseMention(args.shift())
-  if(message.author.id === user) return message.reply("You shoudn't report yourself <:kappalul:527037429161525248>")
+  if(message.author.id === user) return message.reply(`${redtick}You shoudn't report yourself`")
   const reason = args.join(' ')
 
   const messages = await message.channel.fetchMessages({limit: 100})
