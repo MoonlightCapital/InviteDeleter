@@ -6,22 +6,22 @@ node_js:
 
 install:
   - npm install
-  - touch config.js
-  - echo "module.exports = {
-    prefix: '+',
-    token: '',
-    owners: [],
-    allowMentionPrefix: true,
-
-    webhooks: { // First item is ID, second is token
-      log: ['', ''],
-      command: ['', ''],
-      error: ['', '']
-    },
-    reportChannel: ''
-
-  }
-" > config.js
 
 script:
+    - touch config.js
+    - echo "module.exports = {
+      prefix: '+',
+      token: '',
+      owners: [],
+      allowMentionPrefix: true,
+
+      webhooks: { // First item is ID, second is token
+        log: ['', ''],
+        command: ['', ''],
+        error: ['', '']
+      },
+      reportChannel: ''
+
+    }
+  " > config.js
   - node bot.js
