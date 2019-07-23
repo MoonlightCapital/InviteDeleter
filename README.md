@@ -2,6 +2,7 @@
 [![GitHub license](https://img.shields.io/github/license/MoonlightCapital/InviteDeleter.svg)](https://github.com/MoonlightCapital/InviteDeleter/blob/master/LICENSE)
 [![GitHub stars](https://img.shields.io/github/stars/MoonlightCapital/InviteDeleter.svg)](https://github.com/MoonlightCapital/InviteDeleter/stargazers)
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=MoonlightCapital/InviteDeleter)](https://dependabot.com)
+[![DeepScan grade](https://deepscan.io/api/teams/3794/projects/6524/branches/54911/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=3794&pid=6524&bid=54911)
 
 ![InviteDeleter](https://cdn.discordapp.com/attachments/314116801975943198/588786317132038191/invite-deleter-intro.svg)
 
