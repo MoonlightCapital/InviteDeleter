@@ -1,8 +1,5 @@
 const {greentick, yellowtick, redtick} = require('../includes/emotes')
 
-const fs = require('fs')
-const {RichEmbed, Attachment} = require('discord.js')
-
 const snowflakes = {
   red: '466238619997175811',
   green: '466238645095890945'

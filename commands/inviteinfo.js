@@ -1,5 +1,5 @@
 const {greentick, yellowtick, redtick} = require('../includes/emotes')
-const {Guild, PartialGuild, RichEmbed} = require('discord.js')
+const {Guild, RichEmbed} = require('discord.js')
 
 exports.run = async (client, message, args) => {
 
