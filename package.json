@@ -12,7 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "discord.js": "github:discordjs/discord.js#11.5-dev",
-    "dotenv": "^8.0.0",
+    "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "js-yaml": ">=3.13.1",
     "lokijs": "github:techfort/LokiJS",
