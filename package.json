@@ -1,13 +1,21 @@
 {
   "name": "invite-deleter",
   "version": "1.2.4",
-  "description": "",
+  "description": "A Discord bot aimed to protect servers from automated spam attacks",
   "main": "bot.js",
+  "bugs": "https://github.com/MoonlightCapital/InviteDeleter/issues/",
   "scripts": {
     "test": "",
     "start": "node ."
   },
-  "keywords": [],
+  "engines": {
+    "node": ">=8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MoonlightCapital/InviteDeleter.git"
+  },
+  "keywords": ["discord", "bot"],
   "author": "MoonlightCapital",
   "license": "ISC",
   "dependencies": {
