@@ -18,8 +18,6 @@
     "lokijs": "github:techfort/LokiJS",
     "ms": "^2.1.2",
     "node-fetch": "^2.6.0",
-    "sequelize": ">=5.8.9",
-    "sqlite3": "^4.0.4",
     "uws": "^100.0.1"
   },
   "optionalDependencies": {
