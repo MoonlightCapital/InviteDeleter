@@ -20,7 +20,7 @@ exports.run = async (client, message, args) => {
   const reason = args.join(' ') + ' [M]'
 
   if(reason.length > 200)
-    return message.channel.id(`${yellowtick} Max length for reason is 200 characters`)
+    return message.channel.send(`${yellowtick} Max length for reason is 200 characters`)
 
   client.fetchUser(userMention).then(async user => {
 
@@ -76,7 +76,7 @@ Created at: ${user.createdAt}
     await client.db.updateUser(user.data)
 
     msg.edit(`${greentick} Banned \`${user.id}\` from ${potentialGuilds.size} servers`)
-    
+
     const detailsEmbed = new RichEmbed()
       .setTitle(':bomb: User manually gbanned')
       .setColor(0xFF0000)
