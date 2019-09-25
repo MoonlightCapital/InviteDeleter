@@ -6,8 +6,7 @@ exports.run = async (client, message) => {
 
   const uptime = ms(client.uptime, {long:true})
   const serverCount = client.guilds.size
-
-  const bancount = client.db._raw.users.where(u=>u.powerlevel === -2).size
+  const bancount = client.db._raw.users.where(u=>u.powerlevel === -2).length
 
   const embed = new RichEmbed()
   .setTitle(`Statistics for ${client.user.username}`)
@@ -17,7 +16,7 @@ exports.run = async (client, message) => {
   .addField('Uptime', uptime)
   .addField('Server count', serverCount)
   .addField('Version', version)
-  .addField('Spammers banned so far', bancount)
+  .addField('Spam accounts banned so far', bancount)
 
   message.channel.send(embed)
 }
