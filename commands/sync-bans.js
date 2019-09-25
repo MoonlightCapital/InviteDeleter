@@ -37,7 +37,6 @@ Please react with the green tick if you want to send, and with the red one to ca
     if(collector.first().emoji.id === snowflakes.green) {
 
       const banlist = client.db._raw.users.where(u=>u.powerlevel === -2)
-      console.log(banlist.length)
 
 
       await banlist.forEach(a=>message.guild.ban(a.id, a.blacklistReason))
@@ -45,7 +44,7 @@ Please react with the green tick if you want to send, and with the red one to ca
       message.author.data.points -= 2
       client.db.updateUser(message.author.data)
 
-      msg.edit(`${greentick} The global ban list has been synced with this server`)
+      msg.edit(`${greentick} The global ban list has been synced with this server. ${banlist.length} users have been banned`)
     } else if(collector.first().emoji.id === snowflakes.red) {
       msg.edit(`${redtick} Operation aborted. Thanks for reconsidering`)
     }
