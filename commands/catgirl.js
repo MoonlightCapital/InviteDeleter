@@ -1,4 +1,4 @@
-const {greentick, yellowtick, redtick} = require('../includes/emotes')
+const {redtick} = require('../includes/emotes')
 const {RichEmbed} = require('discord.js')
 const fetch = require('node-fetch')
 

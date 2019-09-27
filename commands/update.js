@@ -1,4 +1,4 @@
-const {greentick, redtick} = require('../includes/emotes')
+const {greentick} = require('../includes/emotes')
 
 
 const {execSync} = require('child_process')

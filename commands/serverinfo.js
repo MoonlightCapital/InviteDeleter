@@ -1,4 +1,4 @@
-const {greentick, redtick, yellowtick} = require('../includes/emotes')
+const {redtick, yellowtick} = require('../includes/emotes')
 const {RichEmbed} = require('discord.js')
 
 exports.run = async (client, message, args) => {

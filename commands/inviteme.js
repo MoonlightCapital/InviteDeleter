@@ -1,4 +1,4 @@
-const {greentick, yellowtick, redtick} = require('../includes/emotes')
+const {greentick, redtick} = require('../includes/emotes')
 
 
 exports.run = async (client, message, args) => {
