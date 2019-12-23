@@ -85,7 +85,7 @@ module.exports = async (client, message) => {
   }
 
   if(message.guild) {
-    if(!message.channel.permissionsFor(message.guild.me).has('VIEW_CHANNEL', 'SEND_MESSAGES', 'EMBED_LINKS')) return
+    if(!message.channel.permissionsFor(message.guild.me).has(['VIEW_CHANNEL', 'SEND_MESSAGES', 'EMBED_LINKS'])) return
   }
 
 
