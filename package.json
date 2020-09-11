@@ -27,7 +27,7 @@
     "express": "^4.17.1",
     "lokijs": "^1.5.8",
     "ms": "^2.1.2",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "uWebSockets.js": "github:uNetworking/uWebSockets.js#v16.4.0"
   },
   "optionalDependencies": {
